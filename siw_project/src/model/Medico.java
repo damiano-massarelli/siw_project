@@ -3,9 +3,19 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Medico {
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String nome;
 	private String cognome;
 	private String specializzazione;
@@ -15,7 +25,6 @@ public class Medico {
 
 	public Medico(){}
 	public Medico(String nome, String cognome, String specializzazione) {
-		super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.specializzazione = specializzazione;
@@ -52,5 +61,11 @@ public class Medico {
 
 	public void setEsami(List<Esame> esami) {
 		this.esami = esami;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
