@@ -11,4 +11,5 @@ public class Clinica {
 	private List<Paziente> pazienti;
 	
 	private List<Medico> medici;
+	
 }

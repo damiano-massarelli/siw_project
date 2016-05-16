@@ -18,4 +18,29 @@ public class Risultato {
 	@ManyToOne
 	@JoinColumn(name = "indicatore_id")
 	private IndicatoreRisultato indicatoreRisultato;
+
+	public Risultato(){}
+	public Risultato(int valore, IndicatoreRisultato indicatoreRisultato) {
+		this.valore = valore;
+		this.indicatoreRisultato = indicatoreRisultato;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public int getValore() {
+		return valore;
+	}
+	public void setValore(int valore) {
+		this.valore = valore;
+	}
+	public IndicatoreRisultato getIndicatoreRisultato() {
+		return indicatoreRisultato;
+	}
+	public void setIndicatoreRisultato(IndicatoreRisultato indicatoreRisultato) {
+		this.indicatoreRisultato = indicatoreRisultato;
+	}
+	
 }

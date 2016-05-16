@@ -1,5 +1,6 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.OneToMany;
@@ -11,4 +12,45 @@ public class Medico {
 	
 	@OneToMany(mappedBy = "medico")
 	private List<Esame> esami;
+
+	public Medico(){}
+	public Medico(String nome, String cognome, String specializzazione) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.specializzazione = specializzazione;
+		this.esami = new LinkedList<>();
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getSpecializzazione() {
+		return specializzazione;
+	}
+
+	public void setSpecializzazione(String specializzazione) {
+		this.specializzazione = specializzazione;
+	}
+
+	public List<Esame> getEsami() {
+		return esami;
+	}
+
+	public void setEsami(List<Esame> esami) {
+		this.esami = esami;
+	}
 }
