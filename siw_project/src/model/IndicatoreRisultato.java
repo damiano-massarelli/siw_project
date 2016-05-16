@@ -14,6 +14,7 @@ public class IndicatoreRisultato {
 	private String nome;
 
 	public IndicatoreRisultato(){}
+	
 	public IndicatoreRisultato(String nome) {
 		this.nome = nome;
 	}

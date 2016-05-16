@@ -5,12 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+@Entity
 public class TipologiaEsame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +25,7 @@ public class TipologiaEsame {
 	
 	@OneToMany
 	@JoinColumn(name = "tipologia_id")
-	private Map<String, IndicatoreRisultato> indicatoriRisultato;
+	private List<IndicatoreRisultato> indicatoriRisultato;
 
 	@OneToMany
 	@JoinColumn(name = "tipologia_id")
@@ -33,6 +35,19 @@ public class TipologiaEsame {
 	private List<Esame> esami;
 
 	public TipologiaEsame(){}
+	
+	public TipologiaEsame(String codice, String nome, String descrizione, double costo) {
+		this.codice = codice;
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.costo = costo;
+		
+		/* TODO DOVREBBE ESSERE UNA MAPPA, COME GESTIRLA CON JPA ?? */
+		this.indicatoriRisultato = new LinkedList<>();
+		this.prerequisiti = new LinkedList<>();
+		this.esami = new LinkedList<>();
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -63,10 +78,10 @@ public class TipologiaEsame {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	public Map<String, IndicatoreRisultato> getIndicatoriRisultato() {
+	public List<IndicatoreRisultato> getIndicatoriRisultato() {
 		return indicatoriRisultato;
 	}
-	public void setIndicatoriRisultato(Map<String, IndicatoreRisultato> indicatoriRisultato) {
+	public void setIndicatoriRisultato(List<IndicatoreRisultato> indicatoriRisultato) {
 		this.indicatoriRisultato = indicatoriRisultato;
 	}
 	public List<Prerequisito> getPrerequisiti() {
@@ -81,13 +96,5 @@ public class TipologiaEsame {
 	public void setEsami(List<Esame> esami) {
 		this.esami = esami;
 	}
-	public TipologiaEsame(String codice, String nome, String descrizione, double costo) {
-		this.codice = codice;
-		this.nome = nome;
-		this.descrizione = descrizione;
-		this.costo = costo;
-		this.indicatoriRisultato = new HashMap<>();
-		this.prerequisiti = new LinkedList<>();
-		this.esami = new LinkedList<>();
-	}
+	
 }
