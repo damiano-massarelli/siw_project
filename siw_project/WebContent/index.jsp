@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,36 +20,41 @@
 <meta charset="utf-8">
 
 <script type="text/javascript">
-		function createCookieBanner() {
-			console.log(document.cookie);
-			var startValue = document.cookie.indexOf('=');
-			return startValue == -1 || document.cookie.substring(startValue+1) != 'true';
-		}
-		$(document).ready(function () {
-			if (window.location.hash == '#login')
-				$("#log-in-modal").modal('show');
+	function createCookieBanner() {
+		console.log(document.cookie);
+		var startValue = document.cookie.indexOf('=');
+		return startValue == -1
+				|| document.cookie.substring(startValue + 1) != 'true';
+	}
+	$(document).ready(function() {
+		if (window.location.hash == '#login')
+			$("#log-in-modal").modal('show');
 
-			if (createCookieBanner())
-				$("#cookieDiv").slideDown(300);
-			$("#cookieOk").click(function() {
-				$("#cookieDiv").slideUp(300);
-				document.cookie = 'cookieOk=true';
-			});
-
-			$("#tipologie-nav").click(function() {
-				$("#tipologie-title").animate({fontSize: "+=0.2em"}, 100);
-				$("#tipologie-title").animate({fontSize: "-=0.2em"}, 100);
-			});
+		if (createCookieBanner())
+			$("#cookieDiv").slideDown(300);
+		$("#cookieOk").click(function() {
+			$("#cookieDiv").slideUp(300);
+			document.cookie = 'cookieOk=true';
 		});
-	</script>
+
+		$("#tipologie-nav").click(function() {
+			$("#tipologie-title").animate({
+				fontSize : "+=0.2em"
+			}, 100);
+			$("#tipologie-title").animate({
+				fontSize : "-=0.2em"
+			}, 100);
+		});
+	});
+</script>
 
 <title>Clinica Chescio Rescio</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div id="cookieDiv">
-			Questo sito usa i cookie perchè ce la famo prende a bene, continuando
-			la navigazione accetti qualcosa
+			Questo sito usa i cookie perchè ce la famo prende a bene,
+			continuando la navigazione accetti qualcosa
 			<button id="cookieOk" class="btn btn-success">
 				Ok <span class="glyphicon glyphicon-ok"></span>
 			</button>
@@ -71,8 +78,15 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" data-toggle="modal" data-target="#log-in-modal"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li>
+				<c:if test="${paziente == null}">
+				<a href="#" data-toggle="modal" data-target="#log-in-modal"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a>
+				</c:if>
+				<c:if test="${paziente != null}">
+					<p>Benvenuto, ${paziente.nome}</p>
+				</c:if>		
+				</li>
 			</ul>
 		</div>
 		<!--</div> -->
@@ -90,8 +104,16 @@
 				<div class="modal-body">
 					<h1 class="glyphicon glyphicon-user center-block"></h1>
 					<form action="logIn">
+						<c:if test="${logError != null}">
+							<div class="alert alert-warning fade in">
+								<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<p>c'� un errore nella password o nell' email</p>
+							</div>
+						</c:if>
+					
 						Indirizzo email: <input type="email" class="form-control"
-							name="email"></input> Password: <input type="password"
+							name="email" value="${param['email']}"></input>
+						Password: <input type="password"
 							name="password" class="form-control"></input>
 						<div class="checkbox">
 							<label><input type="checkbox" value="ok"
