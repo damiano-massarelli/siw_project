@@ -1,21 +1,12 @@
 package model;
-/*
- * 
- * 
- * MARCOLINO
- * 
- * 
- * 
- */
-/* import it.uniroma3.persistence.StudenteDaoJDBC;*/
 
-import javax.servlet.http.HttpServletRequest;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import persistence.PazienteDaoJPA;
 
 public class Facade {
-	/**
-	 * inserisce lo studente passato nel DB tramite un oggetto DAO
-	 * @param studente
-	 */
 
 	public void inserisciPaziente(Paziente paziente){
 		/*
@@ -23,8 +14,17 @@ public class Facade {
 		studenteDao.save(studente);	
 		*/
 	}
-	public Paziente prendiPaziente(HttpServletRequest request){
-		return new Paziente();
+	
+	public Paziente getPaziente(String email) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinica-unit");
+		EntityManager em = emf.createEntityManager();
+		
+		PazienteDaoJPA pazienteDao = new PazienteDaoJPA(em);
+		Paziente paziente = pazienteDao.findByEmail(email);
+		em.close();
+		emf.close();
+		return paziente;
+		
 	}
 }
 

@@ -20,7 +20,7 @@ public class FirstTestCase {
 		Paziente paziente1 = new Paziente("simone", "ceccarelli", "password1", "cecio.simone@lol.xd");
 		Paziente paziente2 = new Paziente("damiano", "massarelli", "password2", "damiano.massarelli@gmail.com");
 		Paziente paziente3 = new Paziente("marco", "zoveralli", "password3", "marco.zoveralli@gmail.com");
-		GenericsDao<Paziente> pazienteDaoJPA = new GenericsDaoJPA(em, Paziente.class);
+		GenericsDao<Paziente> pazienteDaoJPA = new GenericsDaoJPA<>(em, Paziente.class);
 		pazienteDaoJPA.save(paziente1);
 		pazienteDaoJPA.save(paziente2);
 		pazienteDaoJPA.save(paziente3);
@@ -36,6 +36,9 @@ public class FirstTestCase {
 	
 		pazienteDaoJPA.delete(paziente3);
 		assertEquals(2, pazienteDaoJPA.findAll().size());
+		
+		em.close();
+		emf.close();
 	}
 
 }

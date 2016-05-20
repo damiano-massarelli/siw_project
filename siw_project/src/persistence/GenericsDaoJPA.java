@@ -7,12 +7,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 public class GenericsDaoJPA<T> implements GenericsDao<T> {
-	EntityManager em;
+	private EntityManager em;
 	private final Class<T> typeParameterClass;
 	
 	public GenericsDaoJPA(EntityManager em, Class<T> typeParameterClass) {
 		this.em = em;
 		this.typeParameterClass = typeParameterClass;
+	}
+	
+	public EntityManager getEntityManager() {
+		return em;
 	}
 	
 	@Override

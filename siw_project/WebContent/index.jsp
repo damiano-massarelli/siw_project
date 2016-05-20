@@ -1,5 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,17 +18,17 @@
 
 <meta charset="utf-8">
 
+<c:if test="${logError != null}">
+	<script type="text/javascript" src="showModal.js"></script>
+</c:if>
+
 <script type="text/javascript">
 	function createCookieBanner() {
-		console.log(document.cookie);
 		var startValue = document.cookie.indexOf('=');
 		return startValue == -1
 				|| document.cookie.substring(startValue + 1) != 'true';
 	}
 	$(document).ready(function() {
-		if (window.location.hash == '#login')
-			$("#log-in-modal").modal('show');
-
 		if (createCookieBanner())
 			$("#cookieDiv").slideDown(300);
 		$("#cookieOk").click(function() {
@@ -53,7 +52,7 @@
 <body>
 	<div class="container-fluid">
 		<div id="cookieDiv">
-			Questo sito usa i cookie perchÃ¨ ce la famo prende a bene,
+			Questo sito usa i cookie perchè ce la famo prende a bene,
 			continuando la navigazione accetti qualcosa
 			<button id="cookieOk" class="btn btn-success">
 				Ok <span class="glyphicon glyphicon-ok"></span>
@@ -84,7 +83,7 @@
 						class="glyphicon glyphicon-log-in"></span> Login</a>
 				</c:if>
 				<c:if test="${paziente != null}">
-					<p>Benvenuto, ${paziente.nome}</p>
+					<h4 class="navbar-text">Benvenuto, <em>${paziente.nome}</em></h4>
 				</c:if>		
 				</li>
 			</ul>
@@ -103,7 +102,7 @@
 				</div>
 				<div class="modal-body">
 					<h1 class="glyphicon glyphicon-user center-block"></h1>
-					<form action="logIn">
+					<form action="loginController" method="post">
 						<c:if test="${logError != null}">
 							<div class="alert alert-warning fade in">
 								<a href="#" class="close" data-dismiss="alert">&times;</a>
