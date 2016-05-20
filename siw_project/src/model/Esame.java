@@ -10,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+//@NamedQuery(name = "findAllEsame", query = "select e from esame e")
 public class Esame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

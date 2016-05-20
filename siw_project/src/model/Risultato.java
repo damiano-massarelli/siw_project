@@ -6,8 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 @Entity
+//@NamedQuery(name = "findAllRisultato", query = "select r from risultato r")
 public class Risultato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

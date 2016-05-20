@@ -24,4 +24,27 @@
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 	</persistence-unit>
+
+        <persistence-unit name="clinica-unit-test" transaction-type="RESOURCE_LOCAL">
+                <class>model.Amministratore</class>
+                <class>model.Esame</class>
+                <class>model.IndicatoreRisultato</class>
+                <class>model.Medico</class>
+                <class>model.Paziente</class>
+                <class>model.Prerequisito</class>
+                <class>model.Risultato</class>
+                <class>model.TipologiaEsame</class>
+
+                <properties>
+                        <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+                        <property name="javax.persistence.jdbc.user" value="postgres" />
+                        <property name="javax.persistence.jdbc.password" value="postgres" />
+                        <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/clinicatest" />
+                        <!-- Hibernate properties -->
+                <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+                        <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+                        <property name="hibernate.hbm2ddl.auto" value="create" />
+                </properties>
+        </persistence-unit>
 </persistence>
