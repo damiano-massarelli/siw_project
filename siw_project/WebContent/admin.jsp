@@ -14,10 +14,15 @@
 
 
 	<div class="container">
-					<form action="login">
-					
-						Indirizzo email: <input type="email" class="form-control"
-							name="email" value="${param['email']}"></input>
+					<form action="loginAdmin" method = "post">
+					<c:if test="${logError != null}">
+							<div class="alert alert-warning fade in">
+								<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<p>c'è un errore nella password o nell' id</p>
+							</div>
+						</c:if>
+						Id: <input type="text" class="form-control"
+							name="id" value="${param['id']}"></input> <-- non mi sembra reale sta cosa -->
 						Password: <input type="password"
 							name="password" class="form-control"></input>
 						<div class="checkbox">

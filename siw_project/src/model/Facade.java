@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import persistence.GenericsDaoJPA;
 import persistence.PazienteDaoJPA;
 
 public class Facade {
@@ -25,6 +26,18 @@ public class Facade {
 		emf.close();
 		return paziente;
 		
+	}
+	
+	public Amministratore getAmministratore(Long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinica-unit");
+		EntityManager em = emf.createEntityManager();
+		
+		
+		GenericsDaoJPA<Amministratore> amministratoreDao = new GenericsDaoJPA<Amministratore>(em, Amministratore.class);
+		Amministratore amministratore = amministratoreDao.findByPrimaryKey(id);
+		em.close();
+		emf.close();
+		return amministratore;
 	}
 }
 

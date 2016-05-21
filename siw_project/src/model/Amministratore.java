@@ -8,6 +8,7 @@ public class Amministratore {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String password;
 
 	public Amministratore(){}
@@ -27,5 +28,7 @@ public class Amministratore {
 		this.password = password;
 	}
 	
-	
+	public boolean checkPassword(String password) {
+		return this.password.equals(password);
+	}
 }

@@ -11,7 +11,7 @@ public class ActionLogin {
 			Facade facade = new Facade();
 			Paziente paziente = facade.getPaziente(request.getParameter("email"));
 			if(paziente == null || !paziente.checkPassword(request.getParameter("password"))) 
-				request.setAttribute("logError", "id e/o password errati");
+				request.setAttribute("logError", "email e/o password errati");
 			
 			request.setAttribute("paziente", paziente);
 			

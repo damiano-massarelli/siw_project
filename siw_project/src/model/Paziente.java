@@ -11,12 +11,16 @@ public class Paziente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 	
+	@Column(nullable = false)
 	private String cognome;
 	
+	@Column(nullable = false)
 	private String password;
 	
+	@Column(unique=true, nullable=false)
 	private String email;
 	
 	@OneToMany(mappedBy = "paziente")
