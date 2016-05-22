@@ -39,5 +39,17 @@ public class Facade {
 		emf.close();
 		return amministratore;
 	}
+	
+	public void aggiungiPaziente(String nome, String cognome, String email, String password) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinica-unit");
+		EntityManager em = emf.createEntityManager();
+		
+		GenericsDaoJPA<Paziente> pazienteDao = new GenericsDaoJPA<>(em, Paziente.class);
+		Paziente paziente = new Paziente(nome, cognome, password, email);
+		pazienteDao.save(paziente);
+		
+		em.close();
+		emf.close();
+	}
 }
 

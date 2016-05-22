@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import model.Facade;
 import model.Paziente;
 
-public class ActionLogin {
-		public String execute(HttpServletRequest request){
+public class ActionLogin implements Action {
+	
+	@Override
+	public String execute(HttpServletRequest request){
 			//interagisce con la facade
 			Facade facade = new Facade();
 			Paziente paziente = facade.getPaziente(request.getParameter("email"));

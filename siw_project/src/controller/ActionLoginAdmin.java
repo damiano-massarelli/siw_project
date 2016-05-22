@@ -5,7 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import model.Facade;
 import model.Amministratore;
 
-public class ActionLoginAdmin {
+public class ActionLoginAdmin implements Action {
+	@Override
 	public String execute(HttpServletRequest request){
 		//interagisce con la facade
 		String nextPage = "/adminPanel.jsp";
