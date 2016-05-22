@@ -44,7 +44,8 @@ public class Esame {
 	private Medico medico;
 	
 	@OneToMany
-	@JoinColumn(name = "esame_id")
+	@JoinColumn(name = "esame_id")		// assenza di doppia navigabilita': come per le associazioni
+										// fra TipologiaEsame e Prerequisito e TipologiaEsame e IndicatoreRisultato
 	private List<Risultato> risultati;
 
 	public Esame(Date dataPrenotazione, Date dataEsame, Paziente paziente, TipologiaEsame tipologiaEsame,

@@ -34,14 +34,18 @@ public class TipologiaEsame {
 	private double costo;
 	
 	@OneToMany
-	@JoinColumn(name = "tipologia_id")
+	@JoinColumn(name = "tipologia_id")		// dice con che attributo la tabella degli indicatori dei risultati
+											// dovra' indicare la tipologia dell'esame
+											// notare l'assenza di doppia navigabilita'
 	private List<IndicatoreRisultato> indicatoriRisultato;
 
 	@OneToMany
-	@JoinColumn(name = "tipologia_id")
+	@JoinColumn(name = "tipologia_id")		// come indicatoriRisultato
 	private List<Prerequisito> prerequisiti;
 	
-	@OneToMany(mappedBy = "tipologiaEsame")
+	@OneToMany(mappedBy = "tipologiaEsame") // mappato dalla variabile contenente il riferimento di TipologiaEsame
+											// notare la presenza di doppia navigabilita': e' l'altra classe
+											// a definire quale attributo fara' riferimento a TipologiaEsame
 	private List<Esame> esami;
 
 	public TipologiaEsame(){}
