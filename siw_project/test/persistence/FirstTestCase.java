@@ -1,14 +1,15 @@
 package persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.Paziente;
-
 import org.junit.Test;
+
+import model.Paziente;
 
 public class FirstTestCase {
 
