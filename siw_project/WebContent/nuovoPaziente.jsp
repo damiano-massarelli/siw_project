@@ -32,14 +32,22 @@
 				</c:if>
 			
 				<h4>Nuovo Paziente</h4>
+				<div class = "text-danger">${nomeError} </div>
 				Nome: <input type="text" class="form-control" name="nome"
 					value="${param['nome']}"></input>
+					
+				<div class = "text-danger">${cognomeError} </div>
 				Cognome: <input type="text"
 					class="form-control" name="cognome" value="${param['cognome']}"></input>
+					
+				<div class = "text-danger">${emailError} </div>
 				Email: <input type="email" class="form-control" name="email"
 					value="${param['email']}"></input>
+					
+				<div class = "text-danger">${passwordError} </div>
 				Password: <input type="password"
 					name="password" class="form-control"></input>
+					
 				<button type="submit" class="submit-button btn btn-primary">Registra paziente</button>
 			</div>
 		</form>
