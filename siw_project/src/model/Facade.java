@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -50,6 +52,20 @@ public class Facade {
 		
 		em.close();
 		emf.close();
+	}
+
+	public List<Medico> getAllMedici() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("clinica-unit");
+		EntityManager em = emf.createEntityManager();
+		
+		GenericsDaoJPA<Medico> medicoDao = new GenericsDaoJPA<>(em, Medico.class);
+		List<Medico> medici = medicoDao.findAll();
+		
+		em.close();
+		emf.close();
+		
+		return medici;
+		
 	}
 }
 
